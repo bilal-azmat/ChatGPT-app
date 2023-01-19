@@ -2,7 +2,7 @@ class ApiConstants
 {
   static final chatGptApi = 'https://api.openai.com/v1/completions' ;
 
-  static final token = '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' ;
+  static final token = This is your api token ;
 }
 
 // {"model": "text-davinci-003",
