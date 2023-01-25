@@ -1,8 +1,8 @@
 class ApiConstants
 {
-  static final chatGptApi = 'https://api.openai.com/v1/completions' ;
+  static const chatGptApi = 'https://api.openai.com/v1/completions' ;
 
-  static final token = This is your api token ;
+  static const token = "" ; //add you open Api token
 }
 
 // {"model": "text-davinci-003",

@@ -7,6 +7,13 @@ class FetchDataForChatGptEvent extends ChatGptEvents
   FetchDataForChatGptEvent({required this.inputData});
 }
 
+class FetchDataForLocalDbEvent extends ChatGptEvents
+{
+  String inputData ;
+
+  FetchDataForLocalDbEvent({required this.inputData});
+}
+
 class MakeAnswerEmptyEvent extends ChatGptEvents
 {
 }
