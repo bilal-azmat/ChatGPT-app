@@ -33,6 +33,27 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
         title: const Text("Chat History"),
         centerTitle: true,
         elevation: 0,
+        actions: [
+          Container(
+            padding: const EdgeInsets.only(right: 10),
+              alignment: Alignment.topRight,
+              child: IconButton(
+                icon: const Icon(
+                  Icons.delete_outline,
+                  size: 30,
+                  color: Colors.white,
+                ),
+                onPressed: () async {
+                  await ChatDatabase.instance.deleteAllChat();
+                  setState(() {
+
+                  });
+                  // chatList.clear();
+                  // BlocProvider.of<ChatGptBloc>(context)
+                  //     .add(MakeAnswerEmptyEvent());
+                },
+              )),
+        ],
       ),
       body: FutureBuilder<List<Chat>>(
         future: ChatDatabase.instance.readAllChat(),
@@ -40,7 +61,8 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
 
           if(snapshot.hasData) {
             chatList=snapshot.data!;
-            return Container(
+            if (chatList.isNotEmpty) {
+              return Container(
               padding: const EdgeInsets.symmetric(vertical: 10),
               height: MediaQuery
                   .of(context)
@@ -49,7 +71,28 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
               child: ListView.builder(
                   itemCount: chatList.length,
                   itemBuilder: (context, index) {
-                    return Column(
+                    var chat=chatList[index];
+                    return
+                      Dismissible(
+                        // Each Dismissible must contain a Key. Keys allow Flutter to
+                        // uniquely identify widgets.
+                          key: UniqueKey(),
+                    // Provide a function that tells the app
+                    // what to do after an item has been swiped away.
+                    onDismissed: (direction) async {
+                    // Remove the item from the data source.
+
+                    await ChatDatabase.instance.delete(chat.id!);
+                    setState(()  {
+                    });
+
+                    // Then show a snackbar.
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text('${chat.id} dismissed')));
+                    },
+                    // Show a red background as the item is swiped away.
+                    background: Container(color: Colors.red),
+                      child:Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -140,8 +183,8 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
                                         : null,
                                     padding: const EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 6),
-                                    decoration: BoxDecoration(
-                                        borderRadius: const BorderRadius.only(
+                                    decoration: const BoxDecoration(
+                                        borderRadius: BorderRadius.only(
                                           topRight: Radius.circular(10),
                                           topLeft: Radius.circular(10),
                                           bottomRight: Radius.circular(10),
@@ -165,9 +208,17 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
                           ),
                         ),
                       ],
-                    );
+                    ));
                   }),
             );
+            } else {
+              return const Center(child: Text("No Chat History!",
+            style: TextStyle(
+              //fontWeight: FontWeight.w700,
+              fontSize: 20
+            ),
+            ));
+            }
           }
           return const Center(child: CircularProgressIndicator(),);
         }

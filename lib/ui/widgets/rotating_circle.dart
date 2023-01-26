@@ -6,7 +6,7 @@ class RotatingCircle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SpinKitCircle(
+    return const SpinKitCircle(
       color: Colors.white,
       size: 70.0,
     ) ;

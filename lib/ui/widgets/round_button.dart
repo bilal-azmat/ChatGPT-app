@@ -8,7 +8,7 @@ class RoundButton extends StatelessWidget {
   final VoidCallback onTap ;
   final double width ;
   final double height ;
-  RoundButton({
+  const RoundButton({
     Key? key, required this.title, required this.onTap, required this.width, required this.height,
   }) : super(key: key);
 
@@ -26,7 +26,7 @@ class RoundButton extends StatelessWidget {
         child: Center(
           child: Text(
             title.toString(),
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: 25,
                 color: ColorConstants.whiteColor
             ),

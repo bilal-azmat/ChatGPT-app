@@ -16,8 +16,8 @@ class ChatDatabase {
     return await openDatabase(path, version: 1, onCreate: _createDB);
   }
   Future _createDB(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
     await db.execute('''
       create table ${ChatFields.tableChat} (
       ${ChatFields.columnId} $idType,
@@ -111,11 +111,11 @@ class ChatFields {
     columnId, columnQuestion, columnAnswer, columnDateTime
   ];
 
-  static final  String tableChat = 'chat';
-  static final  String columnId = '_id';
-  static final String columnQuestion = 'question';
-  static final  String columnAnswer = 'answer';
-  static final  String columnDateTime = 'dateTime';
+  static const  String tableChat = 'chat';
+  static const  String columnId = '_id';
+  static const String columnQuestion = 'question';
+  static const  String columnAnswer = 'answer';
+  static const  String columnDateTime = 'dateTime';
 }
 
 class Chat {

@@ -72,20 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
         appBar: AppBar(
           elevation: 0,
           actions: [
-            Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                  icon: const Icon(
-                    Icons.clear,
-                    color: Colors.white,
-                  ),
-                  onPressed: () async {
-                    await ChatDatabase.instance.deleteAllChat();
-                    // chatList.clear();
-                    // BlocProvider.of<ChatGptBloc>(context)
-                    //     .add(MakeAnswerEmptyEvent());
-                  },
-                )),
+
             Align(
                 alignment: Alignment.topRight,
                 child: IconButton(
@@ -108,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: SafeArea(
           child: GestureDetector(
             onTap: () {
-              FocusScope.of(context).requestFocus(new FocusNode());
+              FocusScope.of(context).requestFocus(FocusNode());
             },
             child: BlocConsumer<ChatGptBloc, ChatGptStates>(
                 listener: (context, state) async {
@@ -172,11 +159,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                         Text(
                                           state.error.toString(),
                                           textAlign: TextAlign.center,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 25,
                                               color: ColorConstants.redColor),
                                         ),
-                                        Icon(
+                                        const Icon(
                                           Icons
                                               .signal_wifi_connected_no_internet_4_sharp,
                                           size: 50,
@@ -244,7 +231,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget chatBubbles() {
 
     return chatList.isNotEmpty
-        ? Container(
+        ? SizedBox(
             height: MediaQuery.of(context).size.height * 0.8,
             child: ListView.builder(
                 itemCount: chatList.length,
@@ -334,8 +321,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       : null,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 6),
-                                  decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.only(
+                                  decoration: const BoxDecoration(
+                                      borderRadius: BorderRadius.only(
                                         topRight: Radius.circular(10),
                                         topLeft: Radius.circular(10),
                                         bottomRight: Radius.circular(10),
@@ -363,7 +350,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 }),
           )
-        : SizedBox();
+        : const SizedBox();
   }
 
   Widget helpYouImage() {
@@ -371,7 +358,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Container(
         height: 200,
         width: 200,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             opacity: 0.9,
             image: AssetImage('assets/help_you.png'),
@@ -392,13 +379,13 @@ class _HomeScreenState extends State<HomeScreen> {
             keyboardType: TextInputType.text,
             autocorrect: false,
             //maxLength: 128,
-            style: TextStyle(fontSize: 20, color: ColorConstants.whiteColor),
+            style: const TextStyle(fontSize: 20, color: ColorConstants.whiteColor),
             controller: textController,
 
             decoration: InputDecoration(
               hintText: "How May I Help You?",
               hintStyle:
-                  TextStyle(fontSize: 20, color: ColorConstants.whiteColor),
+                  const TextStyle(fontSize: 20, color: ColorConstants.whiteColor),
 
               // prefixIcon: Icon(
               //   Icons.search,
@@ -447,7 +434,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       // }
                     }
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.send,
                     color: ColorConstants.whiteColor,
                     size: 30,
@@ -455,15 +442,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: ColorConstants.whiteColor),
+                borderSide: const BorderSide(color: ColorConstants.whiteColor),
                 borderRadius: BorderRadius.circular(10),
               ),
               focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: ColorConstants.whiteColor),
+                borderSide: const BorderSide(color: ColorConstants.whiteColor),
                 borderRadius: BorderRadius.circular(10),
               ),
               errorBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: ColorConstants.redColor),
+                borderSide: const BorderSide(color: ColorConstants.redColor),
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
@@ -486,7 +473,7 @@ class _HomeScreenState extends State<HomeScreen> {
               }
             },
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           // GestureDetector(
@@ -529,7 +516,7 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Welcome to Chat Gpt',
               style: TextStyle(fontSize: 25, color: ColorConstants.whiteColor),
             ),
@@ -540,7 +527,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   isWelcomeVisible = false;
                 });
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.search,
                 color: ColorConstants.whiteColor,
                 size: 30,

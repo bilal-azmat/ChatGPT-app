@@ -1,4 +1,3 @@
-import 'package:chatgpt/bloc/chatgpt_bloc.dart';
 import 'package:chatgpt/model/chatgpt_model.dart';
 
 import '../localdb/local_db.dart';

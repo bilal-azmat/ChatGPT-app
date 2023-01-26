@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:chatgpt/http/http_client.dart';
 import 'package:chatgpt/model/chatgpt_model.dart';

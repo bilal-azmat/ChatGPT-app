@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:chatgpt/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
-import 'package:animated_rotating_widget/animated_rotating_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -21,13 +20,13 @@ class _SplashScreenState extends State<SplashScreen>
 
     controller = AnimationController(
         vsync: this,
-        duration: Duration(seconds: 3)
+        duration: const Duration(seconds: 3)
     ) ;
 
     controller.forward() ;
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => HomeScreen()));
+          .push(MaterialPageRoute(builder: (context) => const HomeScreen()));
     });
     // TODO: implement initState
     super.initState();
@@ -51,13 +50,13 @@ class _SplashScreenState extends State<SplashScreen>
                   child: child,
                 );
               },
-              child: Icon(
+              child: const Icon(
                 Icons.message_outlined,
                 color: Colors.green,
                 size: 200,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             Text(
